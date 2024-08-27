@@ -80,7 +80,8 @@ const TodoList = ({ onTodoClick }) => {
   }, [todos]);
   const handleSelect = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/v1/${id}`);s
+       const response = await axios.get(`http://localhost:5000/api/v1/${id}`);s
+      // const response = await axios.get(url);
       setSelectedTodo(response.data);
     } catch (error) {
       console.error('Error fetching todo details:', error);
@@ -103,7 +104,7 @@ const TodoList = ({ onTodoClick }) => {
         <div style={{ flex: 1, padding: '20px', borderLeft: '1px solid #ddd' }}>
           <h3>{selectedTodo.title}</h3>
           <p>{selectedTodo.description}</p>
-          <p><strong>Date:</strong> {new Date(selectedTodo.date).toLocaleString()}</p>
+          {/* <p><strong>Date:</strong> {new Date(selectedTodo.date).toLocaleString()}</p> */}
         </div>
       )}
       <PaginationContainer>

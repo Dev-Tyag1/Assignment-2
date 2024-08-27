@@ -34,7 +34,7 @@ const ShowButton = styled.button`
     background-color: #005bb5;
   }`;
 
-function TodoItem({ todo,onSelect}) {
+function TodoItem({ fetchTodos,todo,onSelect}) {
 
   const handleDelete = async () => {
     try {

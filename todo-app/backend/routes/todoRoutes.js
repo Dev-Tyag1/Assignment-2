@@ -30,15 +30,15 @@ router.get("", async (req, res) => {
   }
 });
 
-// Get a single todo by ID
-router.get("/:id", async (req, res) => {
-  try {
-    const todo = await Todo.findById(req.params.id);
-    res.json(todo);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch todo" });
-  }
-});
+// // Get a single todo by ID
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const todo = await Todo.findById(req.params.id);
+//     res.json(todo);
+//   } catch (err) {
+//     res.status(500).json({ error: "Failed to fetch todo" });
+//   }
+// });
 
 // Update a todo by ID
 router.put("/:id", async (req, res) => {
