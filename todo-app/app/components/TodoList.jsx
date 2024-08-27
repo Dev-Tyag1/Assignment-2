@@ -54,7 +54,7 @@ const TodoList = ({ onTodoClick }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const url = `http://localhost:5000/api/v1?page=${currentPage}`;
-  //const [selectedTodo, setSelectedTodo] = useState(null);
+  const [selectedTodo, setSelectedTodo] = useState(null);
   //  const handleSelect = async (id) => {
   //   try {
   //     const response = await axios.get(`http://localhost:5000/api/v1/${id}`);
@@ -78,20 +78,34 @@ const TodoList = ({ onTodoClick }) => {
     fetchTodos();
    
   }, [todos]);
+  const handleSelect = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/v1/${id}`);s
+      setSelectedTodo(response.data);
+    } catch (error) {
+      console.error('Error fetching todo details:', error);
+    }
+  };
   return (
     <ListContainer>
       <ul>
+  
       {todos.map((todo) => (
         <TodoItem
           key={todo._id}
           todo={todo}
           // onDelete={handleDelete}
-        //  onSelect={handleSelect}
+        onSelect={handleSelect}
         />
-        
-))}
-
-      </ul>
+        ))}
+    </ul>
+        {selectedTodo && (
+        <div style={{ flex: 1, padding: '20px', borderLeft: '1px solid #ddd' }}>
+          <h3>{selectedTodo.title}</h3>
+          <p>{selectedTodo.description}</p>
+          <p><strong>Date:</strong> {new Date(selectedTodo.date).toLocaleString()}</p>
+        </div>
+      )}
       <PaginationContainer>
         <PaginationButton
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
